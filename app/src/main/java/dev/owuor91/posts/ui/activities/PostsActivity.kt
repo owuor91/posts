@@ -1,15 +1,18 @@
-package dev.owuor91.posts
+package dev.owuor91.posts.ui.activities
 
 import android.os.Bundle
-import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import dev.owuor91.domain.models.Post
-import dev.owuor91.posts.ui.activities.BaseActivity
+import dev.owuor91.posts.R
+import dev.owuor91.posts.ui.adapter.PostsRvAdapter
 import dev.owuor91.presentation.PostsPresenter
+import kotlinx.android.synthetic.main.activity_posts.*
 import javax.inject.Inject
 
 class PostsActivity : BaseActivity(), PostsPresenter.View {
     @Inject
     lateinit var postsPresenter: PostsPresenter
+    var postsAdapter = PostsRvAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +24,8 @@ class PostsActivity : BaseActivity(), PostsPresenter.View {
         super.onStart()
         postsPresenter.view = this
         postsPresenter.getRemotePosts()
+        rvPosts.layoutManager = LinearLayoutManager(baseContext)
+        rvPosts.adapter = postsAdapter
     }
 
     override fun dispose() {
@@ -28,7 +33,8 @@ class PostsActivity : BaseActivity(), PostsPresenter.View {
     }
 
     override fun displayPosts(postsList: List<Post>) {
-        Toast.makeText(baseContext, postsList[0].title, Toast.LENGTH_LONG).show()
+        postsAdapter.data = postsList
+        postsAdapter.notifyDataSetChanged()
     }
 
     override fun showProgress() {

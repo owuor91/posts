@@ -1,10 +1,10 @@
 package dev.owuor91.posts.di.activity
 
 import dagger.Subcomponent
-import dev.owuor91.posts.PostsActivity
 import dev.owuor91.posts.di.adapter.AdapterComponent
 import dev.owuor91.posts.di.fragment.FragmentComponent
 import dev.owuor91.posts.ui.activities.BaseActivity
+import dev.owuor91.posts.ui.activities.PostsActivity
 
 @ActivityScope
 @Subcomponent(modules = [ActivityModule::class])
