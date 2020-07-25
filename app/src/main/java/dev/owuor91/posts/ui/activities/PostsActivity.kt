@@ -23,7 +23,7 @@ class PostsActivity : BaseActivity(), PostsPresenter.View {
     override fun onStart() {
         super.onStart()
         postsPresenter.view = this
-        postsPresenter.getRemotePosts()
+        postsPresenter.getPosts()
         rvPosts.layoutManager = LinearLayoutManager(baseContext)
         rvPosts.adapter = postsAdapter
     }
@@ -33,8 +33,12 @@ class PostsActivity : BaseActivity(), PostsPresenter.View {
     }
 
     override fun displayPosts(postsList: List<Post>) {
-        postsAdapter.data = postsList
-        postsAdapter.notifyDataSetChanged()
+        if (postsList.isEmpty()) {
+            postsPresenter.getRemotePosts()
+        } else {
+            postsAdapter.data = postsList
+            postsAdapter.notifyDataSetChanged()
+        }
     }
 
     override fun showProgress() {

@@ -10,4 +10,8 @@ class PostsApiRepository(private val postsApi: PostsApi) : PostsRepository {
     override fun getPosts(): Single<List<Post>> {
         return postsApi.getPosts()
     }
+
+    override fun savePost(post: Post): Single<Post> {
+        TODO()
+    }
 }
