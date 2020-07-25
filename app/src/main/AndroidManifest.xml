@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.owuor91.posts">
-  
+
+  <uses-permission android:name="android.permission.INTERNET" />
+
   <application
       android:name="dev.owuor91.posts.MyApplication"
       android:allowBackup="true"
@@ -10,11 +12,13 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
-    <activity android:name="dev.owuor91.posts.MainActivity" android:label="${applicationLabel}">
+    <activity
+        android:name="dev.owuor91.posts.PostsActivity"
+        android:label="${applicationLabel}">
       <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        
-        <category android:name="android.intent.category.LAUNCHER"/>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
   </application>
