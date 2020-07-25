@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dev.owuor91.data.BuildConfig
+import dev.owuor91.data.api.PostsApi
 import dev.owuor91.domain.di.DIConstants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -41,8 +42,8 @@ class ApiModule {
       .client(okHttpClient)
       .build()
   }
-  
-  /*@Provides public ItemsApi provideItemsApi(@Named(DIConstants.DEFAULT) Retrofit retrofit) {
-    return retrofit.create(ItemsApi.class);
-  }*/
+
+  @Provides fun providePostsApi(@Named(DIConstants.DEFAULT) retrofit: Retrofit): PostsApi{
+    return retrofit.create(PostsApi::class.java)
+  }
 }

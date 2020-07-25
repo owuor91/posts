@@ -1,13 +1,18 @@
 package dev.owuor91.data.di
 
 import dagger.Module
+import dagger.Provides
+import dev.owuor91.data.api.PostsApi
+import dev.owuor91.data.repository.PostsApiRepository
+import dev.owuor91.domain.di.DIConstants
+import dev.owuor91.domain.repository.PostsRepository
+import javax.inject.Named
 
 @Module
-class RepositoryModule/*@Provides @Named(DIConstants.API) ItemRepository provideItemsApiRepository(ItemsApi itemsApi,
-      @Named(DIConstants.DB) ItemRepository itemDbRepository) {
-    return new ItemApiRepository(itemsApi, itemDbRepository);
-  }
-
-  @Provides @Named(DIConstants.DB) ItemRepository provideItemsDbRepository(ItemDao itemDao) {
-    return new ItemDbRepository(itemDao);
-  }*/
+class RepositoryModule {
+    @Provides
+    @Named(DIConstants.API)
+    fun providePostsApiRepository(postsApi: PostsApi): PostsRepository {
+        return PostsApiRepository(postsApi)
+    }
+}
